@@ -115,22 +115,22 @@ namespace BasicExceptionHandle
             {
                 logic.Logic5(dllName);
             }
-            catch (Exception e)
+            catch (e is ArgumentNullException)
             {
-                if (e is ArgumentNullException)
-                {
-                    Console.WriteLine("the File is Null. more info:" + e.Message);
-                }
-                if (e is System.IO.FileNotFoundException)
-                {
-                    Console.WriteLine("File not found!. more info: " + e.Message);
-                }
-                else
-                {
-                    Console.WriteLine("could not load file. more info: " + e.Message);
-                }
+                Console.WriteLine("the File is Null. more info:" + e.Message);
                 throw;
             }
+            catch (e is System.IO.FileNotFoundException)
+            {
+                Console.WriteLine("File not found!. more info: " + e.Message);
+                throw;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("could not load file. more info: " + e.Message);
+                throw;
+            }
+         
         }
 
 
